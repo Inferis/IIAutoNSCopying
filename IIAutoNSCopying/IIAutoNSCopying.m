@@ -44,10 +44,10 @@ void IIAutoNSCopyingCopier(Class class, NSArray *mapping, id source, id target, 
     }
     
     IIAutoNSCopyingAdoptCopying(class);
+    IIAutoNSCopyingAddMethod(class, @selector(copyWithZone:), ^(Class self, NSZone* zone) {
     
     NSArray *mapping = IIAutoNSCopyingDiscoverMapping(class);
-    IIAutoNSCopyingAddMethod(class, @selector(copyWithZone:), ^(Class self, NSZone* zone) {
-        id copy = [class new];
+        id copy = [[class allocWithZone:zone] init];
         IIAutoNSCopyingCopier(class, mapping, self, copy, zone, options);
         AntiARCRetain(copy);
         return copy;

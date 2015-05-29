@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#define II_AUTO_NSCOPYING(opts) \
++ (void)load { \
+[IIAutoNSCopying inject:self options:@#opts]; \
+}
+
 @interface IIAutoNSCopying : NSObject
+
++ (void)inject:(Class)class;
++ (void)inject:(Class)class options:(id)options;
 
 @end

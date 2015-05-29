@@ -14,6 +14,7 @@
 		E2CDB7531B1860FB008F1B42 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CDB7521B1860FB008F1B42 /* Images.xcassets */; };
 		E2CDB7561B1860FC008F1B42 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2CDB7541B1860FB008F1B42 /* LaunchScreen.xib */; };
 		E2CDB7621B1860FC008F1B42 /* AutoNSCopyingDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CDB7611B1860FC008F1B42 /* AutoNSCopyingDemoTests.m */; };
+		E2CDB76F1B186488008F1B42 /* IIAutoNSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CDB76E1B186488008F1B42 /* IIAutoNSCopying.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		E2CDB75B1B1860FC008F1B42 /* AutoNSCopyingDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoNSCopyingDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CDB7601B1860FC008F1B42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2CDB7611B1860FC008F1B42 /* AutoNSCopyingDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoNSCopyingDemoTests.m; sourceTree = "<group>"; };
+		E2CDB76D1B186488008F1B42 /* IIAutoNSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIAutoNSCopying.h; sourceTree = "<group>"; };
+		E2CDB76E1B186488008F1B42 /* IIAutoNSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIAutoNSCopying.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +126,19 @@
 		E2CDB76B1B186352008F1B42 /* vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E2CDB76C1B18647F008F1B42 /* IIAutoNSCopying */,
 			);
 			name = vendor;
+			sourceTree = "<group>";
+		};
+		E2CDB76C1B18647F008F1B42 /* IIAutoNSCopying */ = {
+			isa = PBXGroup;
+			children = (
+				E2CDB76D1B186488008F1B42 /* IIAutoNSCopying.h */,
+				E2CDB76E1B186488008F1B42 /* IIAutoNSCopying.m */,
+			);
+			name = IIAutoNSCopying;
+			path = ../../IIAutoNSCopying;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2CDB74E1B1860FB008F1B42 /* ViewController.m in Sources */,
+				E2CDB76F1B186488008F1B42 /* IIAutoNSCopying.m in Sources */,
 				E2CDB74B1B1860FB008F1B42 /* AppDelegate.m in Sources */,
 				E2CDB7481B1860FB008F1B42 /* main.m in Sources */,
 			);

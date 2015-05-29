@@ -125,6 +125,14 @@ NSArray *IIAutoNSCopyingDiscoverMapping(Class class) {
     return [mapping copy];
 }
 
+#define GET_VALUE(source, getterSelector, type) ({ \
+type(*objc_msgSendGetter)(id, SEL) = (void *)objc_msgSend; \
+objc_msgSendGetter(source, getterSelector); })
+
+#define SET_VALUE(target, setterSelector, type, value) ({ \
+void(*objc_msgSendSetter)(id, SEL, type) = (void *)objc_msgSend; \
+objc_msgSendSetter(target, setterSelector, [value copy]); })
+
 #define COPY_VALUE(source, getterSelector, target, setterSelector, type) ({ \
 type(*objc_msgSendGetter)(id, SEL) = (void *)objc_msgSend; \
 type value = objc_msgSendGetter(source, getterSelector); \
@@ -137,12 +145,6 @@ type value = objc_msgSendGetter(source, getterSelector); \
 void(*objc_msgSendSetter)(id, SEL, type) = (void *)objc_msgSend; \
 objc_msgSendSetter(target, setterSelector, [value copy]); })
 
-#define COPY_STRUCT(source, getterSelector, target, setterSelector, type) ({ \
-type(*objc_msgSendGetter)(id, SEL) = (void *)objc_msgSend_stret(); \
-type value = objc_msgSendGetter(source, getterSelector); \
-void(*objc_msgSendSetter)(id, SEL, type) = (void *)objc_msgSend_stret; \
-objc_msgSendSetter(target, setterSelector, [value copy]); })
-
 void IIAutoNSCopyingCopier(Class sourceClass, NSArray *mapping, id source, id target, NSZone *zone, NSString *options) {
     for (NSDictionary *map in mapping) {
         Class class = map[@"c"];
@@ -151,6 +153,34 @@ void IIAutoNSCopyingCopier(Class sourceClass, NSArray *mapping, id source, id ta
 
         if (class) {
             COPY_OBJECT(source, getter, target, setter, id);
+            if ([class isSubclassOfClass:[NSArray class]]) {
+                NSArray *original = GET_VALUE(source, getter, id);
+                NSMutableArray *copy = [original mutableCopy];
+                for (NSUInteger i=0; i<original.count; ++i) {
+                    copy[i] = [copy[i] copy];
+                }
+                SET_VALUE(target, setter, id, copy);
+            }
+            else if ([class isSubclassOfClass:[NSDictionary class]]) {
+                NSDictionary *original = GET_VALUE(source, getter, id);
+                NSMutableDictionary *copy = [original mutableCopy];
+                for (id key in original) {
+                    copy[key] = [copy[key] copy]; // key is automatically copied
+                }
+                SET_VALUE(target, setter, id, copy);
+            }
+            else if ([class isSubclassOfClass:[NSSet class]]) {
+                NSSet *original = GET_VALUE(source, getter, id);
+                NSMutableSet *copy = [NSMutableSet mutableCopy];
+                [copy removeAllObjects];
+                for (id object in original) {
+                    [copy addObject:[object copy]];
+                }
+                SET_VALUE(target, setter, id, copy);
+            }
+            else {
+                COPY_OBJECT(source, getter, target, setter, id);
+            }
         }
         else {
             char type = [map[@"t"] characterAtIndex:0];

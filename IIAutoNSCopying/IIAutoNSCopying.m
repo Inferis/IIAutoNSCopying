@@ -28,7 +28,7 @@ void IIAutoNSCopyingCopier(Class class, NSArray *mapping, id source, id target, 
 + (void)inject:(Class)class options:(id)options
 {
     // don't inject if already nscoding
-    if (!class || class_conformsToProtocol(class, @protocol(NSCoding))) {
+    if (!class || class_conformsToProtocol(class, @protocol(NSCopying))) {
         return;
     }
     
@@ -39,7 +39,7 @@ void IIAutoNSCopyingCopier(Class class, NSArray *mapping, id source, id target, 
     }
     
     Class superclass = class_getSuperclass(class);
-    if (!class_conformsToProtocol(superclass, @protocol(NSCoding))) {
+    if (!class_conformsToProtocol(superclass, @protocol(NSCopying))) {
         [self inject:superclass options:options];
     }
     

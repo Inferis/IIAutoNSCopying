@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "TestModels.h"
+#import "NSObject+PropertyDescription.h"
 
 @interface ViewController ()
 
@@ -14,13 +16,29 @@
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    TestModel *model = [TestModel new];
+    model.aClass = [self class];
+    model.aStruct = *(__bridge struct objc_object*)self;
+    model.block = ^(NSArray *x) { return [NSObject new]; };
+    model.aString = @"abc";
+    model.aDate = [NSDate new];
+    model.anURL = [NSURL URLWithString:@"http://www.test.be"];
+    model.subModel = [SubModel new];
+    model.subModel.select = @selector(viewDidAppear:);
+    model.subModel.aNumber = @123;
+    model.subModel.aValue = [NSValue valueWithCGAffineTransform:CGAffineTransformIdentity];
+    model.things = @[[SubModel new], [AnotherModel new]];
+    model.reference = @{ @"sm": [SubModel new], @"dm": [ThirdModel new] };
+    
+    TestModel *model2 = [model copy];
+    model.aString = @"abc2";
+    model.subModel.aNumber = @123456;
+    NSLog(@"model = %@", [model propertyDescription]);
+    NSLog(@"model2 = %@", [model2 propertyDescription]);
 }
 
 @end

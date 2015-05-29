@@ -15,6 +15,8 @@
 		E2CDB7561B1860FC008F1B42 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2CDB7541B1860FB008F1B42 /* LaunchScreen.xib */; };
 		E2CDB7621B1860FC008F1B42 /* AutoNSCopyingDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CDB7611B1860FC008F1B42 /* AutoNSCopyingDemoTests.m */; };
 		E2CDB76F1B186488008F1B42 /* IIAutoNSCopying.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CDB76E1B186488008F1B42 /* IIAutoNSCopying.m */; };
+		E2CDB7731B1880A3008F1B42 /* NSObject+PropertyDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CDB7721B1880A3008F1B42 /* NSObject+PropertyDescription.m */; };
+		E2CDB7771B188287008F1B42 /* TestModels.m in Sources */ = {isa = PBXBuildFile; fileRef = E2CDB7751B1880B9008F1B42 /* TestModels.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,10 @@
 		E2CDB7611B1860FC008F1B42 /* AutoNSCopyingDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoNSCopyingDemoTests.m; sourceTree = "<group>"; };
 		E2CDB76D1B186488008F1B42 /* IIAutoNSCopying.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIAutoNSCopying.h; sourceTree = "<group>"; };
 		E2CDB76E1B186488008F1B42 /* IIAutoNSCopying.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIAutoNSCopying.m; sourceTree = "<group>"; };
+		E2CDB7711B1880A3008F1B42 /* NSObject+PropertyDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PropertyDescription.h"; sourceTree = "<group>"; };
+		E2CDB7721B1880A3008F1B42 /* NSObject+PropertyDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PropertyDescription.m"; sourceTree = "<group>"; };
+		E2CDB7741B1880B9008F1B42 /* TestModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestModels.h; sourceTree = "<group>"; };
+		E2CDB7751B1880B9008F1B42 /* TestModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestModels.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +90,7 @@
 		E2CDB7441B1860FB008F1B42 /* AutoNSCopyingDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E2CDB7701B1880A3008F1B42 /* NSObject+PropertyDescription */,
 				E2CDB76B1B186352008F1B42 /* vendor */,
 				E2CDB7491B1860FB008F1B42 /* AppDelegate.h */,
 				E2CDB74A1B1860FB008F1B42 /* AppDelegate.m */,
@@ -109,6 +116,8 @@
 		E2CDB75E1B1860FC008F1B42 /* AutoNSCopyingDemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				E2CDB7741B1880B9008F1B42 /* TestModels.h */,
+				E2CDB7751B1880B9008F1B42 /* TestModels.m */,
 				E2CDB7611B1860FC008F1B42 /* AutoNSCopyingDemoTests.m */,
 				E2CDB75F1B1860FC008F1B42 /* Supporting Files */,
 			);
@@ -139,6 +148,15 @@
 			);
 			name = IIAutoNSCopying;
 			path = ../../IIAutoNSCopying;
+			sourceTree = "<group>";
+		};
+		E2CDB7701B1880A3008F1B42 /* NSObject+PropertyDescription */ = {
+			isa = PBXGroup;
+			children = (
+				E2CDB7711B1880A3008F1B42 /* NSObject+PropertyDescription.h */,
+				E2CDB7721B1880A3008F1B42 /* NSObject+PropertyDescription.m */,
+			);
+			path = "NSObject+PropertyDescription";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,8 +261,10 @@
 			files = (
 				E2CDB74E1B1860FB008F1B42 /* ViewController.m in Sources */,
 				E2CDB76F1B186488008F1B42 /* IIAutoNSCopying.m in Sources */,
+				E2CDB7731B1880A3008F1B42 /* NSObject+PropertyDescription.m in Sources */,
 				E2CDB74B1B1860FB008F1B42 /* AppDelegate.m in Sources */,
 				E2CDB7481B1860FB008F1B42 /* main.m in Sources */,
+				E2CDB7771B188287008F1B42 /* TestModels.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

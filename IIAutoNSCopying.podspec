@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name      = 'IIAutoNSCopying'
   s.platform  = :ios, 6.0
-  s.version   = '0.2'
+  s.version   = '0.2.1'
   s.summary   = 'A way to add propertybased automatic NSCopying to any object.'
   s.homepage  = "https://github.com/Inferis/#{s.name}"
   s.license   = { :type => 'MIT', :file => 'LICENSE' }

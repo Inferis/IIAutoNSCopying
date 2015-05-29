@@ -152,7 +152,6 @@ void IIAutoNSCopyingCopier(Class sourceClass, NSArray *mapping, id source, id ta
         SEL setter = [map[@"s"] pointerValue];
 
         if (class) {
-            COPY_OBJECT(source, getter, target, setter, id);
             if ([class isSubclassOfClass:[NSArray class]]) {
                 NSArray *original = GET_VALUE(source, getter, id);
                 NSMutableArray *copy = [original mutableCopy];

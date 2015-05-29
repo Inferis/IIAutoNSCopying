@@ -461,6 +461,7 @@
 				E2CDB7671B1860FC008F1B42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E2CDB7681B1860FC008F1B42 /* Build configuration list for PBXNativeTarget "AutoNSCopyingDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +470,7 @@
 				E2CDB76A1B1860FC008F1B42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

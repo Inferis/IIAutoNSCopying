@@ -36,6 +36,11 @@ II_AUTO_NSCOPYING()
     return [self propertyDescription];
 }
 
+- (void)dealloc
+{
+    
+}
+
 @end
 
 @implementation SubModel

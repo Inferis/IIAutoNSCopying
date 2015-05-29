@@ -56,7 +56,7 @@
     unsigned int outCount, i;
     objc_property_t *properties = class_copyPropertyList(class, &outCount);
 
-    NSMutableArray *result = [NSMutableArray arrayWithObject:[NSString stringWithFormat:@"<%@:#%lu> {", [self class], (unsigned long)[self hash]]];
+    NSMutableArray *result = [NSMutableArray arrayWithObject:[NSString stringWithFormat:@"<%@(%p)#%lu> {", [self class], self, (unsigned long)[self hash]]];
     while (YES) {
         for (i = 0; i < outCount; i++) { 
             objc_property_t property = properties[i];

@@ -44,10 +44,23 @@ void IIAutoNSCopyingCopier(Class class, NSArray *mapping, id source, id target, 
     }
     
     IIAutoNSCopyingAdoptCopying(class);
-    IIAutoNSCopyingAddMethod(class, @selector(copyWithZone:), ^(Class self, NSZone* zone) {
-    
     NSArray *mapping = IIAutoNSCopyingDiscoverMapping(class);
-        id copy = [[class allocWithZone:zone] init];
+    IIAutoNSCopyingAddMethod(class, @selector(copyWithZone:), ^(id self, NSZone* zone) {
+        id copy = nil;
+        
+        if (class_conformsToProtocol(superclass, @protocol(NSCopying))) {
+            struct objc_super mySuper = {
+                .receiver = self,
+                .super_class = superclass
+            };
+            
+            id (*objc_superCopyWithZone)(struct objc_super *, SEL, NSZone *) = (void *)&objc_msgSendSuper;
+            copy = (*objc_superCopyWithZone)(&mySuper, @selector(copyWithZone:), zone);
+        }
+        else {
+            copy = [[[self class] allocWithZone:zone] init];
+        }
+        
         IIAutoNSCopyingCopier(class, mapping, self, copy, zone, options);
         AntiARCRetain(copy);
         return copy;

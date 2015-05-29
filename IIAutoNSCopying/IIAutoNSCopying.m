@@ -23,6 +23,8 @@ void IIAutoNSCopyingCopier(Class class, NSArray *mapping, id source, id target, 
     [self inject:class options:nil];
 }
 
+#define AntiARCRetain(...) { void *retainedThing = (__bridge_retained void *)__VA_ARGS__; retainedThing = retainedThing; }
+
 + (void)inject:(Class)class options:(id)options
 {
     // don't inject if already nscoding
@@ -47,6 +49,7 @@ void IIAutoNSCopyingCopier(Class class, NSArray *mapping, id source, id target, 
     IIAutoNSCopyingAddMethod(class, @selector(copyWithZone:), ^(Class self, NSZone* zone) {
         id copy = [class new];
         IIAutoNSCopyingCopier(class, mapping, self, copy, zone, options);
+        AntiARCRetain(copy);
         return copy;
     });
 }

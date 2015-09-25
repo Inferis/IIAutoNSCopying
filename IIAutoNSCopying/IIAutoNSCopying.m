@@ -121,6 +121,12 @@ NSArray *IIAutoNSCopyingDiscoverMapping(Class class) {
                                       @"g": [NSValue valueWithPointer:NSSelectorFromString(getter)],
                                       @"s": [NSValue valueWithPointer:NSSelectorFromString(setter)] }];
             }
+            else if ([type rangeOfString:@"<"].location != NSNotFound) { // protocol
+                [mapping addObject:@{ @"n": name,
+                                      @"p": @YES, // we don't care which
+                                      @"g": [NSValue valueWithPointer:NSSelectorFromString(getter)],
+                                      @"s": [NSValue valueWithPointer:NSSelectorFromString(setter)] }];
+            }
             else {
                 @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                                reason:@"NOT SUPPORTED" userInfo:nil];
@@ -161,6 +167,7 @@ objc_msgSendSetter(target, setterSelector, [value copy]); })
 void IIAutoNSCopyingCopier(Class sourceClass, NSArray *mapping, id source, id target, NSZone *zone, NSString *options) {
     for (NSDictionary *map in mapping) {
         Class class = map[@"c"];
+        BOOL isProtocol = [map[@"p"] boolValue];
         SEL getter = [map[@"g"] pointerValue];
         SEL setter = [map[@"s"] pointerValue];
 
@@ -193,6 +200,9 @@ void IIAutoNSCopyingCopier(Class sourceClass, NSArray *mapping, id source, id ta
             else {
                 COPY_OBJECT(source, getter, target, setter, id);
             }
+        }
+        else if (isProtocol) {
+            COPY_OBJECT(source, getter, target, setter, id);
         }
         else {
             char type = [map[@"t"] characterAtIndex:0];

@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SubModel : NSObject
+@protocol TestProtocol <NSObject>
 
 @property (nonatomic, strong) NSNumber *aNumber;
+
+@end
+
+@interface SubModel : NSObject<TestProtocol>
+
 @property (nonatomic, strong) NSValue *aValue;
 @property (nonatomic, assign) SEL select;
 
@@ -31,6 +36,7 @@
 @property (nonatomic, strong) SubModel *subModel;
 @property (nonatomic, strong) NSArray *things;
 @property (nonatomic, strong) NSDictionary *reference;
+@property (nonatomic, strong) id<TestProtocol> proto;
 
 @end
 

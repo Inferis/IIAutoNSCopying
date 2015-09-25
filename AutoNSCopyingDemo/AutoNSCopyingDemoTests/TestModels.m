@@ -45,6 +45,8 @@ II_AUTO_NSCOPYING()
 
 @implementation SubModel
 
+@synthesize aNumber = _aNumber;
+
 II_AUTO_NSCOPYING()
 
 - (NSString *)description

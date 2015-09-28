@@ -32,12 +32,6 @@ void IIAutoNSCopyingCopier(Class class, NSArray *mapping, id source, id target, 
         return;
     }
     
-    // only do stuff in our app bundle
-    NSString *name = [[NSString alloc] initWithUTF8String:class_getImageName(class)];
-    if ([name rangeOfString:[[NSBundle mainBundle] bundlePath]].location == NSNotFound) {
-        return;
-    }
-    
     Class superclass = class_getSuperclass(class);
     if (!class_conformsToProtocol(superclass, @protocol(NSCopying))) {
         [self inject:superclass options:options];
